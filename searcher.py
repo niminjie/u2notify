@@ -38,13 +38,13 @@ class Searcher():
 
         # print len(torrents)
         for torrent in torrents:
-            item = {}
-            item['title'] = torrent.find_element_by_xpath("./td[2]/table/tbody/tr/td[1]/a").get_attribute('title')
-            item['link'] = torrent.find_element_by_xpath("./td[2]/table/tbody/tr/td[1]/a").get_attribute('href')
-            item['type'] = torrent.find_element_by_xpath("./td[1]/a").text
-            item['date'] = torrent.find_element_by_xpath("./td[4]/span").text
-            item['size'] = torrent.find_element_by_xpath("./td[5]").text.replace('\n', '')
-            item['promotion'] = self.get_promotion(torrent)
+            title = torrent.find_element_by_xpath("./td[2]/table/tbody/tr/td[1]/a").get_attribute('title')
+            items.setdefault(title, {})
+            items[title]['link'] = torrent.find_element_by_xpath("./td[2]/table/tbody/tr/td[1]/a").get_attribute('href')
+            items[title]['type'] = torrent.find_element_by_xpath("./td[1]/a").text
+            items[title]['date'] = torrent.find_element_by_xpath("./td[4]/span").text
+            items[title]['size'] = torrent.find_element_by_xpath("./td[5]").text.replace('\n', '')
+            items[title]['promotion'] = self.get_promotion(torrent)
             try:
                 item['seeders'] = torrent.find_element_by_xpath("./td[6]/b/a").text
             except:
