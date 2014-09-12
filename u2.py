@@ -5,7 +5,6 @@ import os
 from PIL import Image
 from selenium.webdriver.common.keys import Keys
 from pyvirtualdisplay import Display
-from selenium import webdriver
 from searcher import Searcher
 
 class U2Broswer():
@@ -53,14 +52,13 @@ class U2Broswer():
         print "Login successfully!!"
 
     def find_torrent(self):
-        print '=' * 100
         print 'Start capturing torrent'
         searcher = Searcher(self.driver)
         items = []
 
         while(True):
             searcher.find_torrents(items)
-            time.sleep(10)
+            time.sleep(60)
             self.driver.refresh()
 
     def crop_image(self):

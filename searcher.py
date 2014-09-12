@@ -61,7 +61,7 @@ class Searcher():
                 print item['link']
                 print item['promotion']
                 print item['title']
-                print '*' * 50
+                print '-' * 50
                 text += item['link'] + '\n'
                 text += item['promotion'] + '\n'
                 text += item['size'] + '\n'
@@ -71,7 +71,17 @@ class Searcher():
 
         if text != '' and not first:
             send_mail('niminjiecide@gmail.com', 'U2 New Torrent ' + str(datetime.datetime.now()), text.encode('utf8'))
-            print "Send mail"
-            print "text"
-            print first
+            send_mail('yytcjcy@gmail.com', 'U2 New Torrent ' + str(datetime.datetime.now()), text.encode('utf8'))
+
+            print "Sending mail.."
+            print "Text: "
+            print text
+            print '-' * 50
+            print "Length of items: "
+            print len(items)
+            print '-' * 50
+            print '*' * 50
+
+        elif text == '':
+            print "Not find new torrents on :" + str(datetime.datetime.now())
         print '=' * 50
