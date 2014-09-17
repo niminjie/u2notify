@@ -1,8 +1,11 @@
 #coding: utf-8  
 import smtplib  
+import logging
 from email.mime.text import MIMEText  
 from email.header import Header  
 from email.MIMEMultipart import MIMEMultipart
+
+logger = logging.getLogger("default")
 
 def send_mail(receiver, subject, text):
     sender = 'niminjiecide@163.com'
@@ -19,7 +22,8 @@ def send_mail(receiver, subject, text):
     smtp = smtplib.SMTP()  
     smtp.connect('smtp.163.com')  
     smtp.login(username, password)  
-    smtp.sendmail(sender, receiver, msg.as_string())  
+    for r in receiver:
+        smtp.sendmail(sender, r, msg.as_string())  
     smtp.quit()
 
 # if __name__ == "__main__":
