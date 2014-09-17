@@ -6,8 +6,9 @@ class PromotionFilter():
         text = ""
         for title, info in t.items():
             if info['promotion'] in self.promotion:
+                text += title + '\n'
                 text += info['link'] + '\n'
                 text += info['promotion'] + '\n'
                 text += info['size'] + '\n'
-                text += '=' * 50 + '\n' *2
+                text += '=' * 50 + '\n' * 2
         return text

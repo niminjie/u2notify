@@ -17,12 +17,12 @@ def send_mail(receiver, subject, text):
     msg.set_charset("utf-8")
     msg['Subject'] = subject
     msg['From'] = sender
-    msg['To'] = receiver
 
     smtp = smtplib.SMTP()  
     smtp.connect('smtp.163.com')  
     smtp.login(username, password)  
     for r in receiver:
+        msg['To'] = r
         smtp.sendmail(sender, r, msg.as_string())  
     smtp.quit()
 

@@ -42,21 +42,6 @@ class Searcher():
         else:
             return "None"
 
-    def _comparison(self, last, current, compare_fields):
-        updated_list = {}
-        for title, info in current.items():
-            if title in last:
-                logger.debug("Comparing: " + title)
-                for key in compare_fields:
-                    if last[title][key] == info[key]:
-                        continue
-                    else:
-                        updated_list[title] = info
-        print "*" * 50
-        print updated_list
-        print "*" * 50
-        return updated_list
-
     def _xpath_catch(self, torrent, items, title):
         items.setdefault(title, {})
         items[title]['updated'] = False
@@ -91,14 +76,12 @@ class Searcher():
             for torrent in torrents:
                 title = torrent.find_element_by_xpath(web_xpath['title']).get_attribute('title')
                 self._xpath_catch(torrent, current, title)
-                logger.debug('link:' + current[title]['link'])
-                logger.debug('type:' + current[title]['type'])
-                logger.debug('date:' + current[title]['date'])
-                logger.debug('size:' + current[title]['size'])
-                logger.debug('promotion:' + current[title]['promotion'])
-            logger.debug("=" * 50)
-            logger.debug(str(current))
-            logger.debug("=" * 50)
+                # logger.debug('link:' + current[title]['link'])
+                # logger.debug('type:' + current[title]['type'])
+                # logger.debug('date:' + current[title]['date'])
+                # logger.debug('size:' + current[title]['size'])
+                # logger.debug('promotion:' + current[title]['promotion'])
+            logger.debug("Current:" + str(current))
         except Exception as e:
             logger.warn("Exception, find next time")
             logger.error(traceback.format_exc())

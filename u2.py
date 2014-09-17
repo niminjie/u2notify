@@ -4,6 +4,7 @@ from filt import PromotionFilter
 import time
 import os
 import logging
+import datetime
 import sys
 from PIL import Image
 from selenium.webdriver.common.keys import Keys
@@ -104,10 +105,15 @@ class U2Broswer():
 
             # Send mail
             # receiver = ['niminjiecide@gmail.com', 'yytcjcy@gmail.com']
-            # send_mail(receiver, 'U2 New Torrent ' + str(datetime.datetime.now()), text.encode('utf8'))
+            receiver = ['niminjiecide@gmail.com']
+            if text_new:
+                logger.info("Send mail to :" + str(receiver))
+                send_mail(receiver, 'DEMO U2 New Torrent ' + str(datetime.datetime.now()), text_new.encode('utf8'))
+            if text_updated:
+                logger.info("Send mail to :" + str(receiver))
+                send_mail(receiver, 'DEMO U2 Updated Torrent ' + str(datetime.datetime.now()), text_updated.encode('utf8'))
 
             pickle.dump(last, open('torrents.pkl', 'wb'))
-
             # Just a minute
             time.sleep(refresh_time)
             self.driver.refresh()
